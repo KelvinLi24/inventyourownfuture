@@ -1,0 +1,19 @@
+{
+  "missing_local_references": [],
+  "forbidden_local_or_browser_paths": [],
+  "external_domains": {
+    ",": 1,
+    "2138.hk": 1,
+    "2293.hk": 1,
+    "fonts.googleapis.com": 36,
+    "fonts.gstatic.com": 18,
+    "forms.gle": 4,
+    "instagram.com": 55,
+    "www.google.com": 5,
+    "www.instagram.com": 18,
+    "www.inventyourownfuture.com": 54,
+    "www.thestandard.com.hk": 2
+  },
+  "squarespace_domains": {},
+  "ok": true
+}

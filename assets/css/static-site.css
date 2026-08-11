@@ -1,0 +1,45 @@
+/* Static-site compatibility layer for the migrated Squarespace export. */
+html {
+  scroll-behavior: smooth;
+}
+
+body.static-site-ready .preFade,
+body.static-site-ready .preScale,
+body.static-site-ready .preSlide,
+body.static-site-ready .preClip {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+.header-menu {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+body.header-menu-open .header-menu,
+.header-menu.menu-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.header-menu-open {
+  overflow: hidden;
+}
+
+.header-menu-controls,
+.header-menu-nav-folder {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.static-form-message {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}

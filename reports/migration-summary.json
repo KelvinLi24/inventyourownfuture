@@ -1,0 +1,101 @@
+{
+  "pages_migrated": 18,
+  "page_stats": {
+    "pages/3-tips-to-break-into-banking.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 6
+    },
+    "pages/3-tips-to-succeed-in-dentistry.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 5
+    },
+    "pages/3-tips-to-succeed-in-sports.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 6
+    },
+    "pages/3-tips-to-succeed-in-business.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 6
+    },
+    "pages/about-us.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 7
+    },
+    "pages/alumni-network.html": {
+      "scripts": 1,
+      "stylesheets": 10,
+      "images": 7
+    },
+    "pages/career-blog.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 13
+    },
+    "pages/contact.html": {
+      "scripts": 1,
+      "stylesheets": 11,
+      "images": 3
+    },
+    "pages/events-and-camps.html": {
+      "scripts": 1,
+      "stylesheets": 9,
+      "images": 34
+    },
+    "pages/from-public-service-to-private-practice-lessons-from-legal-veteran-stephen-kai-yi-wong.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 5
+    },
+    "pages/internship-highlight-guardforce-hong-kong.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 4
+    },
+    "pages/internship-opportunities.html": {
+      "scripts": 1,
+      "stylesheets": 11,
+      "images": 5
+    },
+    "index.html": {
+      "scripts": 1,
+      "stylesheets": 10,
+      "images": 50
+    },
+    "pages/seminar-with-mr-wong-kai-yi-breaking-barriers-in-law.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 5
+    },
+    "pages/seminar-with-olympic-athlete-zachary-yuen.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 6
+    },
+    "pages/student-ambassador.html": {
+      "scripts": 1,
+      "stylesheets": 12,
+      "images": 5
+    },
+    "pages/upcoming.html": {
+      "scripts": 1,
+      "stylesheets": 10,
+      "images": 8
+    },
+    "pages/what-a-3-star-michelin-restaurant-taught-me-about-excellence.html": {
+      "scripts": 1,
+      "stylesheets": 8,
+      "images": 7
+    }
+  },
+  "asset_counts": {
+    "css/vendor": 16,
+    "images": 80
+  },
+  "duplicate_asset_groups": 25,
+  "duplicate_source_files": 164
+}
