@@ -72,6 +72,15 @@ img {
   object-fit: contain;
 }
 
+.static-carousel .user-items-list-carousel__media-inner .user-items-list-carousel__media.static-carousel__media--contain {
+  height: 100%;
+  object-fit: contain;
+}
+
+.static-carousel--static-strip .user-items-list-carousel__media-inner {
+  max-width: 100%;
+}
+
 .static-carousel .user-items-list-carousel__arrow-button[disabled] {
   cursor: default;
   opacity: 0.35;
@@ -87,6 +96,17 @@ img {
 
 .static-carousel__slides--no-transition {
   transition: none !important;
+}
+
+.static-accordion-ready .accordion-item__dropdown {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 240ms ease;
+}
+
+.static-accordion-ready .accordion-item__dropdown.accordion-item__dropdown--open {
+  max-height: var(--static-accordion-panel-height, 1000px);
 }
 
 .summary-block-wrapper.static-summary-grid .summary-item-list {

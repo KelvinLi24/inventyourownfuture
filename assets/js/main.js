@@ -8,7 +8,9 @@
     wireForms();
     wireLazyImages();
     wireImageFocalPoints();
+    wireStaticClassicImages();
     wireStaticCarousels();
+    wireStaticAccordions();
     wireStaticSummaryImages();
     wireStaticBlogImages();
   };
@@ -118,6 +120,22 @@
     });
   };
 
+  const wireStaticClassicImages = () => {
+    document.querySelectorAll('[data-sqsp-image-classic-block-image-container].has-aspect-ratio').forEach((container) => {
+      const img = container.querySelector('img[data-image-dimensions]');
+      const aspectRatio = getAspectRatio(container, img);
+      if (!img || !aspectRatio) return;
+
+      const currentPadding = Number.parseFloat(container.style.paddingBottom);
+      const expectedPadding = 100 / aspectRatio;
+      if (!Number.isFinite(expectedPadding) || expectedPadding <= 0 || expectedPadding > 400) return;
+      if (Number.isFinite(currentPadding) && currentPadding >= 5) return;
+
+      container.classList.add('static-classic-image--restored-ratio');
+      container.style.paddingBottom = `${expectedPadding}%`;
+    });
+  };
+
   const getAspectRatio = (element, img) => {
     const ratio = element.getAttribute('data-media-aspect-ratio');
     if (ratio && ratio.includes(':')) {
@@ -159,8 +177,9 @@
       const gutter = carousel.querySelector('.user-items-list-carousel__gutter') || carousel;
       const gap = Number.parseFloat(carousel.getAttribute('data-space-between-slides-value')) || 0;
       const showAdjacent = carousel.getAttribute('data-show-adjacent-slides') === 'true';
+      const navigationControls = carousel.getAttribute('data-navigation-controls') || '';
       const maxColumns = Math.max(1, Number.parseInt(carousel.getAttribute('data-max-columns'), 10) || 1);
-      const visibleSlides = showAdjacent ? Math.min(maxColumns, slides.length) : 1;
+      const visibleSlides = showAdjacent || navigationControls === 'none' ? Math.min(maxColumns, slides.length) : 1;
       const isInfinite = carousel.getAttribute('data-is-infinite-enabled') === 'true';
 
       let currentIndex = 0;
@@ -175,6 +194,7 @@
 
       carousel.classList.add('static-carousel');
       carousel.style.setProperty('--static-carousel-gap', `${gap}px`);
+      if (navigationControls === 'none') carousel.classList.add('static-carousel--static-strip');
 
       const maxIndex = () => {
         if (isInfinite) return slides.length - 1;
@@ -233,9 +253,18 @@
         const mediaInner = slide.querySelector('.user-items-list-carousel__media-inner');
         const media = slide.querySelector('.user-items-list-carousel__media');
         const aspectRatio = mediaInner ? getAspectRatio(mediaInner, media) : null;
+        const mediaSrc = (media?.getAttribute('data-src') || media?.getAttribute('src') || '').toLowerCase();
+        const isLogoLikeMedia = /\/invent(?:-\d+)?\.png$/.test(mediaSrc) || navigationControls === 'none';
 
         if (mediaInner && aspectRatio) {
           mediaInner.style.setProperty('--static-media-aspect-ratio', String(aspectRatio));
+        }
+
+        if (media && isLogoLikeMedia) {
+          media.classList.add('static-carousel__media--contain');
+          media.style.objectFit = 'contain';
+          media.style.height = '100%';
+          media.style.width = '100%';
         }
       });
 
@@ -323,6 +352,56 @@
 
       updateMetrics();
       window.addEventListener('resize', debounce(updateMetrics));
+    });
+  };
+
+  const wireStaticAccordions = () => {
+    document.querySelectorAll('.accordion-block').forEach((accordion) => {
+      const container = accordion.querySelector('.accordion-items-container');
+      const buttons = Array.from(accordion.querySelectorAll('.accordion-item__click-target'));
+      if (!container || !buttons.length) return;
+
+      accordion.classList.add('static-accordion-ready');
+      const allowMultiple = container.getAttribute('data-should-allow-multiple-open-items') === 'true';
+
+      const setOpen = (button, open) => {
+        const item = button.closest('.accordion-item');
+        const dropdownId = button.getAttribute('aria-controls');
+        const dropdown = dropdownId ? accordion.querySelector(`#${window.CSS.escape(dropdownId)}`) : null;
+        if (!item || !dropdown) return;
+
+        button.setAttribute('aria-expanded', String(open));
+        item.setAttribute('data-is-open', String(open));
+        dropdown.classList.toggle('accordion-item__dropdown--open', open);
+        dropdown.style.setProperty('--static-accordion-panel-height', `${dropdown.scrollHeight}px`);
+      };
+
+      buttons.forEach((button) => {
+        setOpen(button, button.getAttribute('aria-expanded') === 'true');
+
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
+          if (shouldOpen && !allowMultiple) {
+            buttons.forEach((otherButton) => {
+              if (otherButton !== button) setOpen(otherButton, false);
+            });
+          }
+          setOpen(button, shouldOpen);
+        });
+
+        button.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return;
+          setOpen(button, false);
+          button.focus();
+        });
+      });
+
+      window.addEventListener('resize', debounce(() => {
+        buttons.forEach((button) => {
+          if (button.getAttribute('aria-expanded') === 'true') setOpen(button, true);
+        });
+      }));
     });
   };
 
