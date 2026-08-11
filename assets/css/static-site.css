@@ -16,6 +16,107 @@ img {
   max-width: 100%;
 }
 
+.static-carousel .user-items-list-carousel__slides-revealer {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.static-carousel .user-items-list-carousel__slides {
+  display: flex !important;
+  gap: var(--static-carousel-gap, 0px);
+  grid-gap: 0 !important;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: transform 260ms ease;
+  will-change: transform;
+}
+
+.static-carousel .user-items-list-carousel__slide {
+  box-sizing: border-box;
+  flex: 0 0 var(--static-carousel-slide-width, 100%);
+  max-width: var(--static-carousel-slide-width, 100%);
+  position: relative !important;
+  transform: none !important;
+}
+
+.static-carousel .user-items-list-carousel__media-container {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.static-carousel .user-items-list-carousel__media-inner {
+  display: block;
+  overflow: hidden;
+}
+
+.static-carousel .user-items-list-carousel__media-inner[data-media-aspect-ratio]:not([data-media-aspect-ratio="original"]) {
+  aspect-ratio: var(--static-media-aspect-ratio);
+}
+
+.static-carousel .user-items-list-carousel__media {
+  display: block;
+  width: 100%;
+}
+
+.static-carousel .user-items-list-carousel__media[data-mode="cover"],
+.static-carousel .user-items-list-carousel__media-inner:not([data-media-aspect-ratio="original"]) .user-items-list-carousel__media {
+  height: 100%;
+  object-fit: cover;
+}
+
+.static-carousel .user-items-list-carousel__media[data-mode="none"],
+.static-carousel .user-items-list-carousel__media-inner[data-media-aspect-ratio="original"] .user-items-list-carousel__media {
+  height: auto;
+  object-fit: contain;
+}
+
+.static-carousel .user-items-list-carousel__arrow-button[disabled] {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.static-carousel--dragging .user-items-list-carousel__slides-revealer {
+  cursor: grabbing;
+}
+
+.static-carousel:not(.static-carousel--dragging) .user-items-list-carousel__slides-revealer {
+  cursor: grab;
+}
+
+.static-carousel__slides--no-transition {
+  transition: none !important;
+}
+
+.blog-masonry-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1336px;
+  position: relative;
+  width: 100%;
+}
+
+.blog-masonry-wrapper.static-masonry-ready .blog-item {
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  transition: transform 220ms ease;
+}
+
+.blog-masonry-wrapper .blog-image-wrapper .image-wrapper {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.blog-masonry-wrapper .blog-image-wrapper .image {
+  display: block;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+}
+
 .header-menu {
   visibility: hidden;
   opacity: 0;
