@@ -1,0 +1,62 @@
+.sqs-block[data-definition-name="website.components.stack"] {
+  box-sizing: border-box;
+}
+@media screen and (min-width: 768px) {
+  .sqs-block[data-definition-name="website.components.stack"] .page-section .sqs-stack-container[data-background-enabled] {
+    color: var(--tweak-paragraph-medium-color-on-background);
+  }
+}
+@media screen and (max-width: 767px) {
+  .sqs-block[data-definition-name="website.components.stack"] .page-section .sqs-stack-container[data-background-enabled-system_mobile="true"],
+  .sqs-block[data-definition-name="website.components.stack"] .page-section .sqs-stack-container[data-background-enabled]:not([data-background-enabled-system_mobile]) {
+    color: var(--tweak-paragraph-medium-color-on-background);
+  }
+}
+.sqs-block[data-definition-name="website.components.stack"] > .sqs-block-content,
+.sqs-block[data-definition-name="website.components.stack"] > .sqs-block-content > .sqs-stack-container {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.sqs-block[data-definition-name="website.components.stack"] .sqs-stack-container {
+  display: flex;
+  gap: var(--stack-gap);
+  justify-content: var(--stack-justify-content);
+  align-items: var(--stack-align-items);
+  position: relative;
+  flex-direction: var(--stack-flex-direction);
+}
+.sqs-block[data-definition-name="website.components.stack"] .sqs-stack-container > .stack-child-container {
+  position: relative;
+  display: var(--child-display);
+  align-self: var(--child-align-self);
+  flex: var(--child-flex);
+  min-height: var(--child-min-height);
+  min-width: var(--child-min-width);
+  width: var(--child-fixed-width);
+  height: var(--child-fixed-height);
+  margin-right: var(--child-custom-gap-margin-right);
+  margin-bottom: var(--child-custom-gap-margin-bottom);
+}
+.sqs-block[data-definition-name="website.components.stack"] .sqs-stack-container > .stack-child-container > * {
+  /* Reset all variables to prevent nested stacks from inheriting any of it's parents flex properties */
+  --child-display: initial;
+  --child-flex: initial;
+  --child-align-self: initial;
+  --child-min-height: initial;
+  --child-min-width: initial;
+  --child-fixed-width: initial;
+  --child-fixed-height: initial;
+  --stack-gap: initial;
+  --stack-justify-content: initial;
+  --stack-align-items: initial;
+  --stack-flex-direction: initial;
+  --child-custom-gap-margin-right: initial;
+  --child-custom-gap-margin-bottom: initial;
+}
+.sqs-block[data-definition-name="website.components.stack"] .sqs-stack-container > .stack-child-container > .fe-block,
+.sqs-block[data-definition-name="website.components.stack"] .sqs-stack-container > .stack-child-container > .fluid-engine-block {
+  width: 100%;
+  height: 100%;
+}
+
