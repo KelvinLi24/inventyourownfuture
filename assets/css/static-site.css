@@ -48,6 +48,7 @@ img {
 .static-carousel .user-items-list-carousel__media-inner {
   display: block;
   overflow: hidden;
+  width: 100%;
 }
 
 .static-carousel .user-items-list-carousel__media-inner[data-media-aspect-ratio]:not([data-media-aspect-ratio="original"]) {
@@ -88,7 +89,34 @@ img {
   transition: none !important;
 }
 
-.blog-masonry-wrapper {
+.summary-block-wrapper.static-summary-grid .summary-item-list {
+  display: grid;
+  gap: 28px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+}
+
+.summary-block-wrapper.static-summary-grid .summary-item {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.summary-block-wrapper.static-summary-grid .summary-thumbnail {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.summary-block-wrapper.static-summary-grid .summary-thumbnail-image {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.blog-masonry-wrapper,
+.blog-masonry-wrapper.static-blog-list {
   margin-left: auto;
   margin-right: auto;
   max-width: 1336px;
@@ -96,25 +124,47 @@ img {
   width: 100%;
 }
 
-.blog-masonry-wrapper.static-masonry-ready .blog-item {
-  box-sizing: border-box;
-  left: 0;
-  top: 0;
-  transition: transform 220ms ease;
+.blog-masonry-wrapper.static-blog-list {
+  column-count: 2;
+  column-gap: clamp(48px, 8vw, 100px);
+  height: auto;
+  position: static;
 }
 
-.blog-masonry-wrapper .blog-image-wrapper .image-wrapper {
+.blog-masonry-wrapper.static-blog-list .blog-item {
+  break-inside: avoid;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 0 110px;
+  position: static;
+  vertical-align: top;
+  width: 100%;
+}
+
+.blog-masonry-wrapper.static-blog-list .blog-image-wrapper .image-wrapper {
   box-sizing: border-box;
   display: block;
   position: relative;
   width: 100%;
 }
 
-.blog-masonry-wrapper .blog-image-wrapper .image {
+.blog-masonry-wrapper.static-blog-list .blog-image-wrapper .image {
   display: block;
-  inset: 0;
-  max-width: none;
-  object-fit: cover;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .blog-masonry-wrapper.static-blog-list {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .blog-masonry-wrapper.static-blog-list .blog-item {
+    margin-bottom: 56px;
+  }
 }
 
 .header-menu {
